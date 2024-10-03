@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+        <link href="./dist/output.css" rel="stylesheet">
+
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="w-full h-full flex flex-col items-center justify-center gap-10">
+            <div class="w-screen lg:w-[640px] bg-white h-full min-h-screen flex flex-col gap-3 justify-between" id="html-content-holder">
+                <div class="w-full h-auto">
+                    <img src="./dist/images/header.jpg" alt="header" class="w-full h-full object-contain">
+                </div>
+                <div class="flex flex-col px-10 items-center justify-start text-red-700 font-lato tracking-wider gap-7">
+                    <div class="rounded-xl w-1/2">
+                        <img src="./dist/images/photo.jpeg" alt="photo" class="rounded-xl w-full h-full object-cover">
+                    </div>
+                    <div class="w-[80%] flex flex-col gap-1">
+                        <h3 class="font-semibold text-2xl text-center">Nama peserta</h3>
+                        <h2 class="font-extrabold text-4xl text-center">GUARDIAN OF HEART</h2>
+                        <h5 class="font-medium text-xl mt-2">My Commitment :</h5>
+                        <p class="text-justify">
+                            <b>1.</b> Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                        </p>
+                        <p>
+                            <b>2.</b> Lala
+                        </p>
+                        <p>
+                            <b>3.</b> Lala
+                        </p>
+                        <p>
+                            <b>4.</b> Lala
+                        </p>
+                        <p>
+                            <b>5.</b> Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        </p>
+                    </div>
+                </div>
+                <div class="w-full h-auto">
+                    <img src="./dist/images/footer.jpg" alt="footer" class="w-full h-full object-contain">
+                </div>
+            </div>
+            
+            <button class="font-lato px-5 py-2 bg-blueSecondary text-white" id="btn_convert">
+                Download
+            </button>
+        </div>
+
+        <h3 class="hidden">Download :</h3>
+        <div id="previewImg" class="hidden"></div>
+
+        <script>
+            document.getElementById("btn_convert").addEventListener("click", function () {
+                html2canvas(document.getElementById("html-content-holder"), {
+                    allowTaint: true,
+                    useCORS: true,
+                }).then(function (canvas) {
+                    var link = document.createElement("a");
+                    document.body.appendChild(link);
+                    document.getElementById("previewImg").appendChild(canvas);
+                    link.download = "fileName.png";
+                    link.href = canvas.toDataURL();
+                    link.target = "_blank";
+                    link.click();
+                });
+            });
+        </script>
+    </body>
+</html>
