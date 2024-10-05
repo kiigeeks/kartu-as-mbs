@@ -204,7 +204,7 @@
                 </div>
             </div>
             
-            <button class="font-lato px-5 py-2 bg-blueSecondary text-white" id="btn_convert">
+            <button class="font-lato px-5 py-2 bg-blueSecondary text-white mb-10" id="btn_convert">
                 Download
             </button>
 
@@ -226,7 +226,12 @@
                     var link = document.createElement("a");
                     document.body.appendChild(link);
                     document.getElementById("previewImg").appendChild(canvas);
-                    link.download = "ImOnFire-June2023.png";
+                    const today = new Date();
+
+                    const month = today.toLocaleString('default', { month: 'long' }); // Mendapatkan nama bulan
+                    const year = today.getFullYear(); // Mendapatkan tahun
+
+                    link.download = `My-Commitment-${month}${year}.png`;
                     link.href = canvas.toDataURL();
                     link.target = "_blank";
                     link.click();
